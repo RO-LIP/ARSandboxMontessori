@@ -4,8 +4,8 @@ using Assets.HueterDesWaldes.AreaCalculation;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    private Spawner spawner;  
+    //[SerializeField]
+    //private Spawner spawner;  
     [SerializeField]
     private GameObject areaCalculatorGO;
     private IAreaCalculator areaCalculator;
