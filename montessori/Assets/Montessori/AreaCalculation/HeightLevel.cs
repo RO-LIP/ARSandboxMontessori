@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public enum HeightLevelType { UNDEFINED, WATER, VILLAGE, TREE, MOUNTAIN }
+public enum HeightLevelType { UNDEFINED, LO, HI }
 
 [Serializable]
 public class HeightLevel
