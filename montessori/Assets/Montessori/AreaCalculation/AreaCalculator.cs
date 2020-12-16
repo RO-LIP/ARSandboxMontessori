@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -110,6 +111,7 @@ namespace Assets.HueterDesWaldes.AreaCalculation
             {
                 DebugBorders();
                 DebugGrid();
+                DebugTileHeightLevels();
             }
             CalculateContiguousAreas(grid, out contiguousAreas);
         }
@@ -236,6 +238,17 @@ namespace Assets.HueterDesWaldes.AreaCalculation
                     gridV.Add(tile.WorldPos);
             }
             debugVisualizer.VisualDebuggingTiles(gridV, grid.TileLengthX, grid.TileLengthZ);
+        }
+        private void DebugTileHeightLevels()
+        {
+            Debug.Log("writing to csv");
+            string filePath = Application.dataPath + "/tileHeightLevels.csv";
+            Debug.Log(filePath);
+            StreamWriter streamWriter = new StreamWriter(filePath);
+            foreach(Tile tile in grid.Tiles)
+                streamWriter.WriteLine(tile.WorldPos.y.ToString());
+            streamWriter.Flush();
+            streamWriter.Close();
         }
 
         private void DebugContiguousAreas()
