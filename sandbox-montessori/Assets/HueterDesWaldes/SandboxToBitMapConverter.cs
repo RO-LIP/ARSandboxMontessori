@@ -6,7 +6,7 @@ using UnityEngine;
 public class Calculator : MonoBehaviour, ISubscriber
 {
     AreaCalculator areaCalculator;
-    private int[][] bitMapDetcted;
+    private int[][] bitMapDetected;
 
     // Start is called before the first frame update
     void Start()
@@ -37,15 +37,15 @@ public class Calculator : MonoBehaviour, ISubscriber
                 HeightLevelType heightLevelType = tileInGrid.height.type;
 
                 if (heightLevelType == HeightLevelType.WATER)
-                    bitMapDetcted[x][z] = 5;
-                bitMapDetcted[x][z] = 0;
+                    bitMapDetected[x][z] = 5;
+                bitMapDetected[x][z] = 0;
             }
         }
     }
 
     public int[][] GetBitMapDetcted() 
     {
-        return bitMapDetcted;
+        return bitMapDetected;
     }
 
     public void Notify()
