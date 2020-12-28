@@ -19,7 +19,7 @@ public class HeightLevel
             float upperBorder = current.upperBorder;
             float lowerBorder = current.lowerBorder;
             //height level of position in grid matches current HeightLevel
-            if (y <= upperBorder && y >= lowerBorder)
+            if (y >= lowerBorder && y < upperBorder)
             {
                 height = current;
             }
