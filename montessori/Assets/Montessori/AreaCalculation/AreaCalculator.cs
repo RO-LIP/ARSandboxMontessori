@@ -106,6 +106,11 @@ namespace Assets.HueterDesWaldes.AreaCalculation
 
         public void Calculate()
         {
+            //calculate grid to get tile-information
+            grid.Calculate();
+            //calculate dynamic heightLevels
+            heightLevels = DynamicHeightLevel.DynamicBorders(grid);
+            //recalculate grid with dynamic heightLevels
             grid.Calculate();
             if (debugMode)
             {

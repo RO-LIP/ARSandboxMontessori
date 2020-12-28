@@ -10,7 +10,7 @@ public class HeightLevel
     public float lowerBorder = 0;
     public float upperBorder = 0;
 
-    internal static HeightLevel GetFrom(List<HeightLevel> heights, float y)
+    public static HeightLevel GetFrom(List<HeightLevel> heights, float y)
     {
         HeightLevel height = new HeightLevel();
 
