@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public enum HeightLevelType { UNDEFINED, WATER, VILLAGE, TREE, MOUNTAIN }
+public enum HeightLevelType { UNDEFINED, LO, HI }
 
 [Serializable]
 public class HeightLevel
@@ -10,7 +10,7 @@ public class HeightLevel
     public float lowerBorder = 0;
     public float upperBorder = 0;
 
-    internal static HeightLevel GetFrom(List<HeightLevel> heights, float y)
+    public static HeightLevel GetFrom(List<HeightLevel> heights, float y)
     {
         HeightLevel height = new HeightLevel();
 
@@ -19,7 +19,7 @@ public class HeightLevel
             float upperBorder = current.upperBorder;
             float lowerBorder = current.lowerBorder;
             //height level of position in grid matches current HeightLevel
-            if (y <= upperBorder && y >= lowerBorder)
+            if (y >= lowerBorder && y < upperBorder)
             {
                 height = current;
             }

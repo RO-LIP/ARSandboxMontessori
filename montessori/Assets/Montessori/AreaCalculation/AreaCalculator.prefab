@@ -47,10 +47,10 @@ MonoBehaviour:
   heightLevels:
   - type: 1
     lowerBorder: 0
-    upperBorder: 32
+    upperBorder: 50
   - type: 2
-    lowerBorder: 32
-    upperBorder: 64
+    lowerBorder: 50
+    upperBorder: 100
   gridResolutionX: 128
   underscanResolution: 96
   underscanInterval: 2

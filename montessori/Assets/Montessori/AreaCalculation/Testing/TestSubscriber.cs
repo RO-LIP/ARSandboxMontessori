@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// TestSubscriber has to be attached as Component to the AreaCalculator GameObject / Prefab
+/// </summary>
 public class TestSubscriber : MonoBehaviour, ISubscriber
 {
     private AreaCalculator areaCalculator;

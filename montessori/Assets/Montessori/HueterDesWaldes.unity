@@ -632,6 +632,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 533a5409d27451a4f9227149c5abafe0, type: 3}
+--- !u!1 &310990025 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8419290984417818485, guid: 533a5409d27451a4f9227149c5abafe0,
+    type: 3}
+  m_PrefabInstance: {fileID: 310990024}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &310990026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310990025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fdb912eb29691e4eb05875e58e1af25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &320515478
 GameObject:
   m_ObjectHideFlags: 0
@@ -2189,7 +2207,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: -0, y: 0.70710677, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 220, y: 572, z: 118}
+  m_LocalPosition: {x: 220, y: 572, z: 103.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1010848}
@@ -3853,54 +3871,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9c1f26f354e8149895a5c00933e6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minQuality: 0
-  maxQuality: 1
-  slider: {fileID: 0}
-  fillImage: {fileID: 7343228}
-  gradient:
-    key0:
-      r: 0.754717
-      g: 0.07831969
-      b: 0.07831969
-      a: 1
-    key1:
-      r: 0.97127175
-      g: 0.9811321
-      b: 0.1018156
-      a: 1
-    key2:
-      r: 0.37093434
-      g: 0.7735849
-      b: 0.065681756
-      a: 0
-    key3:
-      r: 0
-      g: 0
-      b: 0
-      a: 0
-    key4:
-      r: 0
-      g: 0
-      b: 0
-      a: 0
-    key5:
-      r: 0
-      g: 0
-      b: 0
-      a: 0
-    key6:
-      r: 0
-      g: 0
-      b: 0
-      a: 0
-    key7:
-      r: 0
-      g: 0
-      b: 0
-      a: 0
-    m_Mode: 0
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 2
 --- !u!114 &1996138958
 MonoBehaviour:
   m_ObjectHideFlags: 0
