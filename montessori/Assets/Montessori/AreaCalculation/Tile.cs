@@ -15,6 +15,7 @@ namespace Assets.HueterDesWaldes.AreaCalculation
         public Vector3 WorldPos { get; private set; }
         public float Size { get; private set; }
         public HeightLevel HeightLevel { get; private set; }
+        public HeightLevel height { get; private set; }
 
 
         public Tile(Vector3 worldPos, int gridPosX, int gridPosZ, HeightLevel height, float size)
