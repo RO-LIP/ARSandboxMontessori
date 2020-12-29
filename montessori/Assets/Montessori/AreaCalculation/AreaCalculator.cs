@@ -207,6 +207,11 @@ namespace Assets.HueterDesWaldes.AreaCalculation
             return heightLevels;
         }
 
+        public Grid GetGrid()
+        {
+            return grid;
+        }
+
         private void DebugBorders()
         {
             //disable visual debugging in stopped editor mode
