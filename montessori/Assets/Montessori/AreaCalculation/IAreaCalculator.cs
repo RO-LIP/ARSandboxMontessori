@@ -22,5 +22,7 @@ namespace Assets.HueterDesWaldes.AreaCalculation
         /// </summary>
         /// <returns></returns>
         List<HeightLevel> GetHeightLevels();
+
+        Grid GetGrid();
     }
 }

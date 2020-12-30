@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Assets.HueterDesWaldes.AreaCalculation.AreaCalculator">
+    <Position X="6" Y="5.75" Width="6.75" />
+    <Members>
+      <Method Name="Attach" Hidden="true" />
+      <Field Name="bufferA" Hidden="true" />
+      <Field Name="bufferB" Hidden="true" />
+      <Method Name="CalculateContiguousAreas" Hidden="true" />
+      <Field Name="contiguousAreas" Hidden="true" />
+      <Method Name="ContiguousAreasOnHeightLevel" Hidden="true" />
+      <Method Name="DebugBorders" Hidden="true" />
+      <Method Name="DebugContiguousAreas" Hidden="true" />
+      <Method Name="DebugGrid" Hidden="true" />
+      <Field Name="debugMode" Hidden="true" />
+      <Method Name="DebugTileHeightLevels" Hidden="true" />
+      <Method Name="Detach" Hidden="true" />
+      <Field Name="subscribers" Hidden="true" />
+      <Field Name="timer" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Assets.HueterDesWaldes.AreaCalculation.AreaCalculator.State">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\HueterDesWaldes\AreaCalculation\AreaCalculator.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAKICAJIgABAAAABBQKgAAAgFAIAABIIAkAE=</HashCode>
+      <FileName>Assets\Montessori\AreaCalculation\AreaCalculator.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="grid" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Assets.HueterDesWaldes.AreaCalculation.Grid">
+    <Position X="6" Y="1.5" Width="4.5" />
+    <Members>
+      <Field Name="heightLevels" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="Assets.HueterDesWaldes.AreaCalculation.Grid.Borders" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\HueterDesWaldes\AreaCalculation\Grid.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAICAgAAAAAIAAAgAgAIAAAAGAAAAIAAAAAAAAAAAE=</HashCode>
+      <FileName>Assets\Montessori\AreaCalculation\Grid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Montessori.ColorCode.ColorCodeProjector">
+    <Position X="12.75" Y="2.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAEJAAAAAAAAAAAAABABAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Montessori\ColorCode\ColorCodeProjector.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Assets.HueterDesWaldes.AreaCalculation.IAreaCalculator">
+    <Position X="0.5" Y="8.75" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABACgAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Montessori\AreaCalculation\IAreaCalculator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ISubscriber">
+    <Position X="3.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Montessori\AreaCalculation\ISubscriber.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IPublisher">
+    <Position X="0.5" Y="10.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAABAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Montessori\AreaCalculation\IPublisher.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Assets.Montessori.ColorCode.IColorCodeSource">
+    <Position X="15.25" Y="7.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Montessori\ColorCode\IColorCodeSource.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Assets.Montessori.ColorCode.Color">
+    <Position X="13.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAgAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Montessori\ColorCode\IColorCodeSource.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

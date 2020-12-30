@@ -36,7 +36,7 @@ public class Calculator : MonoBehaviour, ISubscriber
                 Tile tileInGrid = grid.TileAt(x, z);
                 HeightLevelType heightLevelType = tileInGrid.height.type;
 
-                if (heightLevelType == HeightLevelType.WATER)
+                if (heightLevelType == HeightLevelType.LO)
                     bitMapDetected[x][z] = 5;
                 bitMapDetected[x][z] = 0;
             }
