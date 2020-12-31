@@ -13,12 +13,15 @@ namespace Assets.Montessori.ColorCode
         private float wireTileHeight = 512;
         [SerializeField]
         private AreaCalculator areaCalculator = null;
+        private IAreaCalculator i_areaCalculator;
+        private IPublisher publisher;
         private IColorCodeSource source = null;
 
         // Start is called before the first frame update
         void Start()
         {
-            IPublisher publisher = areaCalculator;
+            publisher = areaCalculator;
+            i_areaCalculator = areaCalculator;
             publisher.Attach(this);
         }
 
@@ -29,7 +32,7 @@ namespace Assets.Montessori.ColorCode
             Color[,] colorArray = source.GetColorArray();
             
             //get grid with Tiles and their positions from areaCalculator
-            HueterDesWaldes.AreaCalculation.Grid grid = areaCalculator.GetGrid();
+            HueterDesWaldes.AreaCalculation.Grid grid = i_areaCalculator.GetGrid();
 
             //instantiate wireTiles and apply colors
             int rows = colorArray.GetLength(0);

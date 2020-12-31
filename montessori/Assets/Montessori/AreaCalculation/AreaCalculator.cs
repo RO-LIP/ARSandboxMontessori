@@ -299,6 +299,7 @@ namespace Assets.HueterDesWaldes.AreaCalculation
 
         public void NotifySubscibers()
         {
+            Calculate();
             foreach (ISubscriber subscriber in subscribers)
                 subscriber.Notify();
         }
