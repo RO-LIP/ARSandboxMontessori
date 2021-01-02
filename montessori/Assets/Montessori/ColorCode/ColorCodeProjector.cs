@@ -16,11 +16,12 @@ namespace Assets.Montessori.ColorCode
         private IAreaCalculator i_areaCalculator;
         private IPublisher publisher;
         private IColorCodeSource source = null;
+        private Comparer comparer;  
 
         // Start is called before the first frame update
         void Start()
         {
-            publisher = areaCalculator;
+            publisher = comparer;
             i_areaCalculator = areaCalculator;
             publisher.Attach(this);
         }

@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     private BitmapConverter bitmapConverter;
     [SerializeField]
     private ColorCodeProjector colorCodeProjector;
+    [SerializeField]
+    private SandboxToBitMapConverter sandboxToBitMapConverter;
 
     // Start is called before the first frame update
     void Start()

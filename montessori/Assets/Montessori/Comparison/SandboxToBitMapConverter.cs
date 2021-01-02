@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Calculator : MonoBehaviour, ISubscriber
+public class SandboxToBitMapConverter : MonoBehaviour, ISubscriber
 {
     AreaCalculator areaCalculator;
     private int[][] bitMapDetected;
