@@ -3,68 +3,100 @@ using UnityEngine;
 
 namespace Assets.Montessori.BitmapConversion
 {
-    public class BitmapConverter
-    {
-        public int[,] ConvertTextureToBitmap(Texture2D tex)
-        {
-            int rows = tex.height;
-            int cols = tex.width;
+    public class BitmapConverter : MonoBehaviour, ISubscriber
+    {  
+        private int gridRows = 64;
+        private int gridCols = 128;
+        private int[,] convertedBitmap;
+        private Object[] sourceTextures;
+        private Texture2D currentTexture;
 
-            Color[] pixelArray = tex.GetPixels();
-            
+        void Start()
+        {
+            sourceTextures = Resources.LoadAll("Textures", typeof(Texture2D));
+            currentTexture = (Texture2D)sourceTextures[Random.Range(0, sourceTextures.Length)];
+        }
+
+        /*
+        void Update()
+        {
+
+        }*/
+
+        private void ConvertTextureToBitmap()
+        {
+            Color[] pixelArray = currentTexture.GetPixels();
+
             int[] bitArray = new int[pixelArray.Length];
 
             for (int pix = 0; pix < pixelArray.Length - 1; pix++)
             {
                 if (pixelArray[pix] == Color.black)
                 {
-                    bitArray[pix] = 1;                    
+                    bitArray[pix] = 1;
                 }
                 else
                 {
                     bitArray[pix] = 0;
-                }                              
+                }
             }
-           
-            return ConvertArrayInto2DArray(bitArray, rows, cols);
+            int[,] originalBitmap = ConvertArrayInto2DArray(bitArray, currentTexture.height, currentTexture.width);
+            convertedBitmap = ResizeBitmap(originalBitmap, gridRows, gridCols);
         }
 
-        public int[,] ResizeBitmap(int[,] bitmap, int gridWidth, int gridHeight)
+        public int[,] GetBitmapConverted()
         {
-            int[,] resizedBitmap = new int[gridHeight, gridWidth];
+            return convertedBitmap;
+        }
 
-            int tileWidth = bitmap.GetLength(0) / gridWidth;
-            int tileHeight = bitmap.GetLength(1) / gridHeight;
+        public int[,] ResizeBitmap(int[,] bitmap, int gridRows, int gridCols)
+        {
+            int[,] resizedBitmap = new int[gridRows, gridCols];
 
-            int bitPosX = 0;
-            int bitPosY;
+            int tileCols = bitmap.GetLength(1) / gridCols;
+            int tileRows = bitmap.GetLength(0) / gridRows;
+
+            int newColPosition;
+            int newRowPosition = 0;
 
             // Iterate through the tiles
-            for (int i = 0; i < bitmap.GetLength(1); i += tileHeight)
+            for (int i = 0; i < bitmap.GetLength(1) - tileRows; i += tileRows)
             {
-                bitPosY = 0;
-                for (int j = 0; j < bitmap.GetLength(0); j += tileWidth)
+                newColPosition = 0;
+                for (int j = 0; j < bitmap.GetLength(0) - tileCols; j += tileCols)
                 {
                     // calculate bit value of the particular tile and set the corresponding bit in the resized bitmap
                     // Algorithm: if at least one bit within the tile is "1", the "resized-bit" should also be "1"
-                    for (int a = 0; a < tileHeight; a++)
+                    if (newColPosition >= gridCols)
                     {
-                        for (int b = 0; b < tileWidth; b++)
+                        newColPosition = gridCols - 1;
+                    }
+                    if (newRowPosition >= gridRows)
+                    {
+                        newRowPosition = gridRows - 1;
+                    }
+                    for (int a = 0; a < tileRows; a++)
+                    {
+                        for (int b = 0; b < tileCols; b++)
                         {
+                            if (i + a >= bitmap.GetLength(0))
+                            {
+                                break;
+                            }
                             if (bitmap[i + a, j + b] == 1)
                             {
-                                resizedBitmap[bitPosX, bitPosY] = 1;
+                                resizedBitmap[newRowPosition, newColPosition] = 1;
                                 break;
                             }
                             else
                             {
-                                resizedBitmap[bitPosX, bitPosY] = 0;
+                                resizedBitmap[newRowPosition, newColPosition] = 0;
                             }
                         }
                     }
-                    bitPosY++;
+                    newColPosition++;
                 }
-                bitPosX++;
+                newRowPosition++;
             }
             return resizedBitmap;
         }
@@ -100,6 +132,13 @@ namespace Assets.Montessori.BitmapConversion
                 }
                 file.Write("\n");
             }
-        }    
+        }
+
+        public void Notify()
+        {
+            ConvertTextureToBitmap();
+            Debug.Log("Notified BitmapConverter");
+        }
     }
 }
+    

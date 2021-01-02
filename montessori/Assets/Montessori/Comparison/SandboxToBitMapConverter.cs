@@ -6,7 +6,7 @@ using UnityEngine;
 public class SandboxToBitMapConverter : MonoBehaviour, ISubscriber
 {
     AreaCalculator areaCalculator;
-    private int[][] bitMapDetected;
+    private int[,] bitMapDetected;
 
     // Start is called before the first frame update
     void Start()
@@ -37,13 +37,13 @@ public class SandboxToBitMapConverter : MonoBehaviour, ISubscriber
                 HeightLevelType heightLevelType = tileInGrid.height.type;
 
                 if (heightLevelType == HeightLevelType.LO)
-                    bitMapDetected[x][z] = 5;
-                bitMapDetected[x][z] = 0;
+                    bitMapDetected[x,z] = 5;
+                bitMapDetected[x,z] = 0;
             }
         }
     }
 
-    public int[][] GetBitMapDetcted()
+    public int[,] GetBitMapDetcted()
     {
         return bitMapDetected;
     }

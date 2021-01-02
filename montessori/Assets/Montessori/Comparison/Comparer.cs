@@ -4,8 +4,12 @@ using UnityEngine;
 using Assets.Montessori.ColorCode;
 using Assets.HueterDesWaldes.AreaCalculation;
 
+using Assets.Montessori.BitmapConversion;
+
 public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
 {
+    private BitmapConverter bitmapConverter;
+
     private SandboxToBitMapConverter sandboxToBitMapConverter;
     private AreaCalculator areaCalculator;
 
@@ -26,17 +30,17 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
 
     }
 
-    private int[][] MergeBitMaps(int[][] terrain, int[][] template)
+    private int[,] MergeBitMaps(int[,] terrain, int[,] template)
     {
-        int[][] mergedBitMaps = template;
+        int[,] mergedBitMaps = template;
 
         for (int i = 0; i < terrain.GetLength(0); i++)
         {
             for (int j = 0; j < terrain.GetLength(1); j++)
             {
-                if (terrain[i][j] == 5)
+                if (terrain[i,j] == 5)
                 {
-                    mergedBitMaps[i][j] = 5;
+                    mergedBitMaps[i,j] = 5;
                 }
             }
         }
@@ -44,7 +48,7 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
         return mergedBitMaps;
     }
 
-    private bool CompareShapes(int[][] mergedMaps)
+    private bool CompareShapes(int[,] mergedMaps)
     {
         bool shapeIdentity = true;
         PrefillColorTiles(mergedMaps);
@@ -56,13 +60,13 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
             {
                 colorTiles[i,j] = 0;
 
-                if (mergedMaps[i][j] == 5 && mergedMaps[i - 1][j] == 0 && mergedMaps[i + 1][j] == 0)
+                if (mergedMaps[i,j] == 5 && mergedMaps[i - 1,j] == 0 && mergedMaps[i + 1,j] == 0)
                 {
                     shapeIdentity = false;
                     colorTiles[i,j] = Assets.Montessori.ColorCode.Color.RED;
                 }
 
-                if (mergedMaps[i][j] == 0)
+                if (mergedMaps[i,j] == 0)
                 {
                     colorTiles[i,j] = Assets.Montessori.ColorCode.Color.UNDEFINED;
                 }
@@ -72,7 +76,7 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
         return shapeIdentity;
     }
 
-    private void PrefillColorTiles(int[][] mergedMaps)
+    private void PrefillColorTiles(int[,] mergedMaps)
     {
         for (int i = 0; i < mergedMaps.GetLength(0); i++)
         {
@@ -91,7 +95,7 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
         }
     }
 
-    private bool compare(int[][] input, int[][] template)
+    private bool compare(int[,] input, int[,] template)
     {
         return CompareShapes(MergeBitMaps(input, template));
     }
@@ -103,8 +107,9 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
 
     public void Notify()
     {
-        int[][] template = null; //hier noch über BitMapper aus 2DTexture BitMap Template holen
-        int[][] terrain = sandboxToBitMapConverter.GetBitMapDetcted();
+        //int[][] template = null; //hier noch über BitMapper aus 2DTexture BitMap Template holen
+        int[,] template = bitmapConverter.GetBitmapConverted();        
+        int[,] terrain = sandboxToBitMapConverter.GetBitMapDetcted();
         bool shapeIdentity = compare(terrain, template);
         NotifySubscibers();
     }
