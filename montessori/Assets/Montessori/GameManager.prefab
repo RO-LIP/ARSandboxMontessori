@@ -48,10 +48,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   areaCalculatorGO: {fileID: 8419290984417818485}
-  comparer: {fileID: 0}
-  bitmapConverter: {fileID: 0}
-  colorCodeProjector: {fileID: 0}
-  sandboxToBitMapConverter: {fileID: 0}
+  comparer: {fileID: 9033898260712478978, guid: 5bd3a26e2ba78894da6b667d1a2a94d2,
+    type: 3}
+  bitmapConverter: {fileID: 8598991431001098223, guid: 99161805f43d9aa449d160eb0f9471f9,
+    type: 3}
+  colorCodeProjector: {fileID: 6989638194709991564, guid: b40e09d9e92a3eb48aa473740550c6de,
+    type: 3}
+  sandboxToBitMapConverter: {fileID: 3279481197603896588, guid: f9ff5d34b223b714d8662a0ba7880eab,
+    type: 3}
 --- !u!1001 &630105439955886454
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -48,7 +48,7 @@ public class SandboxToBitMapConverter : MonoBehaviour, ISubscriber
         return bitMapDetected;
     }
 
-    public void Notify()
+    public void Notify(bool result = false)
     {
         ConvertAreasToBitMap();
         Debug.Log("Notified Converter");

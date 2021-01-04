@@ -22,7 +22,7 @@ public class TestSubscriber : MonoBehaviour, ISubscriber
     {
 
     }
-    public void Notify()
+    public void Notify(bool result = false)
     {
         areaCalculator.Calculate();
     }

@@ -12,9 +12,9 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
 
     private SandboxToBitMapConverter sandboxToBitMapConverter;
     private AreaCalculator areaCalculator;
-
     private Assets.Montessori.ColorCode.Color[,] colorTiles;
 
+    private bool shapeIdentity;
     private readonly List<ISubscriber> subscribers = new List<ISubscriber>();
 
 
@@ -105,12 +105,11 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
         return colorTiles;
     }
 
-    public void Notify()
+    public void Notify(bool result = false)
     {
-        //int[][] template = null; //hier noch über BitMapper aus 2DTexture BitMap Template holen
         int[,] template = bitmapConverter.GetBitmapConverted();        
         int[,] terrain = sandboxToBitMapConverter.GetBitMapDetcted();
-        bool shapeIdentity = compare(terrain, template);
+        shapeIdentity = compare(terrain, template);
         NotifySubscibers();
     }
 
@@ -127,6 +126,6 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
     public void NotifySubscibers()
     {
         foreach (ISubscriber subscriber in subscribers)
-            subscriber.Notify();
+            subscriber.Notify(shapeIdentity);
     }
 }

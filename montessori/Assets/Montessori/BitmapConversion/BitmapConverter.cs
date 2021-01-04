@@ -144,9 +144,12 @@ namespace Assets.Montessori.BitmapConversion
             }
         }
 
-        public void Notify()
+        public void Notify(bool result = false)
         {
-            ConvertTextureToBitmap();
+            if (result)
+            {
+                ConvertTextureToBitmap();
+            }        
             Debug.Log("Notified BitmapConverter");
         }        
     }

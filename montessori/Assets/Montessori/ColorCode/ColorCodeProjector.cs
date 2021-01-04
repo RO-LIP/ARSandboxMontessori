@@ -26,7 +26,7 @@ namespace Assets.Montessori.ColorCode
             publisher.Attach(this);
         }
 
-        public void Notify()
+        public void Notify(bool result = false)
         {
             //TODO: where is the source?
             //get colorCodeArray from source
