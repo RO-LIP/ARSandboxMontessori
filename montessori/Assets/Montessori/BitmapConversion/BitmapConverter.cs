@@ -4,27 +4,38 @@ using UnityEngine;
 namespace Assets.Montessori.BitmapConversion
 {
     public class BitmapConverter : MonoBehaviour, ISubscriber
-    {  
+    {
         private int gridRows = 64;
         private int gridCols = 128;
         private int[,] convertedBitmap;
-        private Object[] sourceTextures;
         private Texture2D currentTexture;
+
+        private SpriteRenderer spriteRend;
+        private Object[] sprites;
+        private Sprite currentSprite;
 
         void Start()
         {
-            sourceTextures = Resources.LoadAll("Textures", typeof(Texture2D));
-            currentTexture = (Texture2D)sourceTextures[Random.Range(0, sourceTextures.Length)];
+            spriteRend = gameObject.GetComponent<SpriteRenderer>();
+            sprites = Resources.LoadAll("Textures", typeof(Sprite));
+            ConvertTextureToBitmap();
         }
 
         /*
         void Update()
         {
-
         }*/
 
+        private void ShowRandomExercise()
+        {            
+            spriteRend.sprite = (Sprite)sprites[Random.Range(0, sprites.Length)];
+            currentSprite = spriteRend.sprite;
+            Debug.Log("Showing exercise: " + spriteRend.sprite.name);
+            currentTexture = currentSprite.texture;
+        }
         private void ConvertTextureToBitmap()
         {
+            ShowRandomExercise();
             Color[] pixelArray = currentTexture.GetPixels();
 
             int[] bitArray = new int[pixelArray.Length];
@@ -40,66 +51,18 @@ namespace Assets.Montessori.BitmapConversion
                     bitArray[pix] = 0;
                 }
             }
-            int[,] originalBitmap = ConvertArrayInto2DArray(bitArray, currentTexture.height, currentTexture.width);
-            convertedBitmap = ResizeBitmap(originalBitmap, gridRows, gridCols);
+            int[,] originalBitmap = ConvertArrayInto2DArray(bitArray, currentTexture.height, currentTexture.width);            
+            convertedBitmap = ResizeBitmap(originalBitmap);
+
+            // For testing purposes only
+            // SaveBitmapAsCsvFile(originalBitmap, "C:/Users/hello/Desktop/bitmap.csv");
+            // SaveBitmapAsCsvFile(convertedBitmap, "C:/Users/hello/Desktop/resizedBitmap.csv");            
         }
 
         public int[,] GetBitmapConverted()
         {
             return convertedBitmap;
-        }
-
-        public int[,] ResizeBitmap(int[,] bitmap, int gridRows, int gridCols)
-        {
-            int[,] resizedBitmap = new int[gridRows, gridCols];
-
-            int tileCols = bitmap.GetLength(1) / gridCols;
-            int tileRows = bitmap.GetLength(0) / gridRows;
-
-            int newColPosition;
-            int newRowPosition = 0;
-
-            // Iterate through the tiles
-            for (int i = 0; i < bitmap.GetLength(1) - tileRows; i += tileRows)
-            {
-                newColPosition = 0;
-                for (int j = 0; j < bitmap.GetLength(0) - tileCols; j += tileCols)
-                {
-                    // calculate bit value of the particular tile and set the corresponding bit in the resized bitmap
-                    // Algorithm: if at least one bit within the tile is "1", the "resized-bit" should also be "1"
-                    if (newColPosition >= gridCols)
-                    {
-                        newColPosition = gridCols - 1;
-                    }
-                    if (newRowPosition >= gridRows)
-                    {
-                        newRowPosition = gridRows - 1;
-                    }
-                    for (int a = 0; a < tileRows; a++)
-                    {
-                        for (int b = 0; b < tileCols; b++)
-                        {
-                            if (i + a >= bitmap.GetLength(0))
-                            {
-                                break;
-                            }
-                            if (bitmap[i + a, j + b] == 1)
-                            {
-                                resizedBitmap[newRowPosition, newColPosition] = 1;
-                                break;
-                            }
-                            else
-                            {
-                                resizedBitmap[newRowPosition, newColPosition] = 0;
-                            }
-                        }
-                    }
-                    newColPosition++;
-                }
-                newRowPosition++;
-            }
-            return resizedBitmap;
-        }
+        }        
 
         public int[,] ConvertArrayInto2DArray(int[] array, int rows, int cols)
         {
@@ -115,6 +78,53 @@ namespace Assets.Montessori.BitmapConversion
                 }
             }
             return array2D;
+        }
+
+        private int[,] ResizeBitmap(int[,] bitmap)
+        {
+            int[,] resizedBitmap = new int[gridRows, gridCols];
+            int[,] tile = new int[bitmap.GetLength(0) / gridRows, bitmap.GetLength(1) / gridCols];
+
+            int rowPosition = 0;
+            int colPosition = 0;
+
+            //Resize all Rows
+            for (int j = 0; j < bitmap.GetLength(0) - tile.GetLength(0); j += tile.GetLength(0))
+            {
+                //Resize One Row
+                for (int i = 0; i < bitmap.GetLength(1) - tile.GetLength(1); i += tile.GetLength(1))
+                {
+                    //Resize One Tile
+                    resizedBitmap[rowPosition, colPosition] = ResizeTile(bitmap, j, i, tile.GetLength(0), tile.GetLength(1));
+                    colPosition++;
+                    if (colPosition == gridCols)
+                    {
+                        break;
+                    }
+                }
+                colPosition = 0;
+                rowPosition++;
+                if (rowPosition == gridRows)
+                {
+                    break;
+                }
+            }
+            return resizedBitmap;
+        }
+
+        private int ResizeTile(int[,] bitmap, int rowPosition, int colPosition, int tileRows, int tileCols)
+        {
+            for (int i = 0; i < tileRows && i < bitmap.GetLength(0); i++)
+            {
+                for (int j = 0; j < tileCols && j < bitmap.GetLength(1); j++)
+                {
+                    if (bitmap[rowPosition + i, colPosition + j] == 1)
+                    {
+                        return 1;
+                    }
+                }
+            }
+            return 0;
         }
 
         public void SaveBitmapAsCsvFile(int[,] bitmap, string pathName)
@@ -138,7 +148,7 @@ namespace Assets.Montessori.BitmapConversion
         {
             ConvertTextureToBitmap();
             Debug.Log("Notified BitmapConverter");
-        }
+        }        
     }
 }
     
