@@ -13,7 +13,8 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
 
     private bool shapeIdentity;
     private readonly List<ISubscriber> subscribers = new List<ISubscriber>();
-
+    [SerializeField]
+    private int tolerance = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
 
     private int[,] MergeBitMaps(int[,] terrain, int[,] template)
     {
+        AddTolerance(template);
         int[,] mergedBitMaps = template;
 
         for (int i = 0; i < terrain.GetLength(0); i++)
@@ -37,6 +39,31 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
         }
 
         return mergedBitMaps;
+    }
+
+    private void AddTolerance(int[,] template)
+    {
+        for (int i = 0; i < template.GetLength(0); i++)
+        {
+            for (int j = 0; j < template.GetLength(1); j++)
+            {
+                if (template[i, j] == 1)
+                {
+                    for (int k = -tolerance; k < tolerance; k++)
+                    {
+                        for (int l = -tolerance; l < template.GetLength(1); l++)
+                        {
+                            bool columnInBitMap = (i + k >= 0) && (i + k < template.GetLength(0));
+                            bool rowInBitMap = (j + l >= 0) && (j + l < template.GetLength(1));
+                            if (columnInBitMap && rowInBitMap && template[i+k,j+l] == 0)
+                            {
+                                template[i + k, j + l] = 2;
+                            }
+                        }
+                    }
+                }
+            }
+        }        
     }
 
     private bool CompareShapes(int[,] mergedMaps)
