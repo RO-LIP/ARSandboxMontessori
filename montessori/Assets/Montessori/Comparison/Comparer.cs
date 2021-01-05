@@ -8,16 +8,16 @@ using Assets.Montessori.BitmapConversion;
 
 public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
 {
-    public BitmapConverter bitmapConverter { get; set; }
-    public SandboxToBitMapConverter sandboxToBitMapConverter { get; set; }
-    public AreaCalculator areaCalculator { get; set; }
-    [SerializeField]
-    private int tolerance = 2;
+    public BitmapConverter bitmapConverter { private get; set; }
+    public SandboxToBitMapConverter sandboxToBitMapConverter { private get; set; }
+    public AreaCalculator areaCalculator { private get; set; }
+   
     private Assets.Montessori.ColorCode.Color[,] colorTiles;
 
     private bool shapeIdentity;
     private readonly List<ISubscriber> subscribers = new List<ISubscriber>();
-
+    [SerializeField]
+    private int tolerance = 2;
 
     // Start is called before the first frame update
     void Start()
