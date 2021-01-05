@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/SandboxScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Montessori/HueterDesWaldes.unity
+    path: Assets/Montessori/Montessori.unity
     guid: f6110b97c8478df47bab6d8ff0e209f7
   m_configObjects: {}
