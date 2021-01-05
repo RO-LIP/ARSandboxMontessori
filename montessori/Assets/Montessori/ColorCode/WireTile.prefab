@@ -51,6 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 696cff55836f56244bdc233762b713bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  materialRed: {fileID: 2100000, guid: 84700317aa8af4848b5f7513f2e2ef48, type: 2}
+  materialGreen: {fileID: 2100000, guid: 335b370872ce85448bf69d35517ccf82, type: 2}
+  materialUndefined: {fileID: 2100000, guid: c00a37dda4385ed42980c58e701860aa, type: 2}
 --- !u!1 &3930877636886419352
 GameObject:
   m_ObjectHideFlags: 0

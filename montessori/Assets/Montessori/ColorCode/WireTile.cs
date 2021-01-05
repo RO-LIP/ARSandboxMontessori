@@ -10,6 +10,8 @@ namespace Assets.Montessori.ColorCode
         private Material materialRed = null;
         [SerializeField]
         private Material materialGreen = null;
+        [SerializeField]
+        private Material materialUndefined = null;
 
         public void SetColor(Color color)
         {
@@ -19,10 +21,7 @@ namespace Assets.Montessori.ColorCode
             else if (color.Equals(Color.RED))
                 material = materialRed;
             else
-            {
-                Destroy(this);
-                return;
-            }
+                material = materialUndefined;
 
             //fetch each child and apply material
             for (int i = 0; i < transform.childCount; i++)

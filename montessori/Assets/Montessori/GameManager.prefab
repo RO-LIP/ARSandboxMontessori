@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50dc40403493add4aa634b536cd3c140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wireTilePrefab: {fileID: 2135022162027007530, guid: 9db1892caba784f408b9af57adde6ef0,
+  wireTilePrefab: {fileID: 5237564903908411703, guid: d554bae8df2db3b48a9d0db7ac4f0e9b,
     type: 3}
   wireTileHeight: 512
 --- !u!1001 &630105439955886454

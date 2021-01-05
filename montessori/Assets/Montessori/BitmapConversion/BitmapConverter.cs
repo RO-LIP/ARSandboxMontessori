@@ -6,7 +6,7 @@ namespace Assets.Montessori.BitmapConversion
     public class BitmapConverter : MonoBehaviour, ISubscriber
     {
         private int gridRows = 128;
-        private int gridCols = 64;
+        private int gridCols = 63;
         private int[,] convertedBitmap;
         private Texture2D currentTexture;
 
