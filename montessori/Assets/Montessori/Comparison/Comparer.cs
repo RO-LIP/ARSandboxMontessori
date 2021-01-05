@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Assets.Montessori.ColorCode;
 using Assets.HueterDesWaldes.AreaCalculation;
-
 using Assets.Montessori.BitmapConversion;
 
 public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
@@ -11,7 +9,6 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
     public BitmapConverter bitmapConverter { private get; set; }
     public SandboxToBitMapConverter sandboxToBitMapConverter { private get; set; }
     public AreaCalculator areaCalculator { private get; set; }
-   
     private Assets.Montessori.ColorCode.Color[,] colorTiles;
 
     private bool shapeIdentity;
@@ -23,12 +20,6 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
     void Start()
     {
         areaCalculator.Attach(this);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private int[,] MergeBitMaps(int[,] terrain, int[,] template)
