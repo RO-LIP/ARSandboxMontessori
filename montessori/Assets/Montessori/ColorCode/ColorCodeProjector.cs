@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Assets.HueterDesWaldes.AreaCalculation;
 
 namespace Assets.Montessori.ColorCode
@@ -11,24 +9,18 @@ namespace Assets.Montessori.ColorCode
         private GameObject wireTilePrefab = null;
         [SerializeField]
         private float wireTileHeight = 512;
-        [SerializeField]
-        private AreaCalculator areaCalculator = null;
-        private IAreaCalculator i_areaCalculator;
-        private IPublisher publisher;
-        private IColorCodeSource source = null;
-        private Comparer comparer;  
+        public IAreaCalculator i_areaCalculator { private get; set; }
+        public IPublisher publisher { private get; set; }
+        public IColorCodeSource source { private get; set; }
 
         // Start is called before the first frame update
         void Start()
         {
-            publisher = comparer;
-            i_areaCalculator = areaCalculator;
             publisher.Attach(this);
         }
 
         public void Notify(bool result = false)
         {
-            //TODO: where is the source?
             //get colorCodeArray from source
             Color[,] colorArray = source.GetColorArray();
             

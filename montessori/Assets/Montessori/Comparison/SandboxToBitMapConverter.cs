@@ -1,11 +1,9 @@
 ﻿using Assets.HueterDesWaldes.AreaCalculation;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SandboxToBitMapConverter : MonoBehaviour, ISubscriber
 {
-    AreaCalculator areaCalculator;
+    public AreaCalculator areaCalculator { private get; set; }
     private int[,] bitMapDetected;
 
     // Start is called before the first frame update
@@ -13,12 +11,6 @@ public class SandboxToBitMapConverter : MonoBehaviour, ISubscriber
     {
         areaCalculator = FindObjectOfType<AreaCalculator>();
         areaCalculator.Attach(this);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private void ConvertAreasToBitMap()
