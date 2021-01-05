@@ -5,8 +5,8 @@ namespace Assets.Montessori.BitmapConversion
 {
     public class BitmapConverter : MonoBehaviour, ISubscriber
     {
-        private int gridRows = 64;
-        private int gridCols = 128;
+        private int gridRows = 128;
+        private int gridCols = 64;
         private int[,] convertedBitmap;
         private Texture2D currentTexture;
 
@@ -30,6 +30,7 @@ namespace Assets.Montessori.BitmapConversion
         {            
             spriteRend.sprite = (Sprite)sprites[Random.Range(0, sprites.Length)];
             currentSprite = spriteRend.sprite;
+            spriteRend.color = new Color(0f, 0f, 0f, 0.7f);
             Debug.Log("Showing exercise: " + spriteRend.sprite.name);
             currentTexture = currentSprite.texture;
         }
@@ -55,8 +56,8 @@ namespace Assets.Montessori.BitmapConversion
             convertedBitmap = ResizeBitmap(originalBitmap);
 
             // For testing purposes only
-            // SaveBitmapAsCsvFile(originalBitmap, "C:/Users/hello/Desktop/bitmap.csv");
-            // SaveBitmapAsCsvFile(convertedBitmap, "C:/Users/hello/Desktop/resizedBitmap.csv");            
+            // SaveBitmapAsCsvFile(originalBitmap, "C:/Users/hello/Desktop/bitmap1.csv");
+            // SaveBitmapAsCsvFile(convertedBitmap, "C:/Users/hello/Desktop/resizedBitmap1.csv");            
         }
 
         public int[,] GetBitmapConverted()
@@ -67,13 +68,13 @@ namespace Assets.Montessori.BitmapConversion
         public int[,] ConvertArrayInto2DArray(int[] array, int rows, int cols)
         {
             int index = 0;
-            int[,] array2D = new int[rows, cols];
+            int[,] array2D = new int[cols, rows];
 
             for (int x = 0; x < rows; x++)
             {
                 for (int y = 0; y < cols; y++)
                 {
-                    array2D[x, y] = array[index];
+                    array2D[y, x] = array[index];
                     index++;
                 }
             }
