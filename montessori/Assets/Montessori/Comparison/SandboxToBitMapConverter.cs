@@ -20,17 +20,19 @@ public class SandboxToBitMapConverter : MonoBehaviour, ISubscriber
         int gridResolutionZ = grid.ResolutionZ;
         int gridResolutionX = grid.ResolutionX;
 
+        bitMapDetected = new int[gridResolutionX, gridResolutionZ];
+
         //iterate over tiles in grid
         for (int x = 0; x < gridResolutionX; x++)
         {
             for (int z = 0; z < gridResolutionZ; z++)
             {
                 Tile tileInGrid = grid.TileAt(x, z);
-                HeightLevelType heightLevelType = tileInGrid.height.type;
+                HeightLevelType heightLevelType = tileInGrid.HeightLevel.type;
 
                 if (heightLevelType == HeightLevelType.LO)
-                    bitMapDetected[x,z] = 5;
-                bitMapDetected[x,z] = 0;
+                    bitMapDetected[x, z] = 5;
+                bitMapDetected[x, z] = 0;
             }
         }
     }

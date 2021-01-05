@@ -31,9 +31,9 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
         {
             for (int j = 0; j < terrain.GetLength(1); j++)
             {
-                if (terrain[i,j] == 5)
+                if (terrain[i, j] == 5)
                 {
-                    mergedBitMaps[i,j] = 5;
+                    mergedBitMaps[i, j] = 5;
                 }
             }
         }
@@ -55,7 +55,7 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
                         {
                             bool columnInBitMap = (i + k >= 0) && (i + k < template.GetLength(0));
                             bool rowInBitMap = (j + l >= 0) && (j + l < template.GetLength(1));
-                            if (columnInBitMap && rowInBitMap && template[i+k,j+l] == 0)
+                            if (columnInBitMap && rowInBitMap && template[i + k, j + l] == 0)
                             {
                                 template[i + k, j + l] = 2;
                             }
@@ -63,7 +63,7 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
                     }
                 }
             }
-        }        
+        }
     }
 
     private bool CompareShapes(int[,] mergedMaps)
@@ -76,17 +76,17 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
         {
             for (int j = 0; j < mergedMaps.GetLength(1); j++)
             {
-                colorTiles[i,j] = 0;
+                colorTiles[i, j] = 0;
 
-                if (mergedMaps[i,j] == 5 && mergedMaps[i - 1,j] == 0 && mergedMaps[i + 1,j] == 0)
+                if (mergedMaps[i, j] == 5 && mergedMaps[i - 1, j] == 0 && mergedMaps[i + 1, j] == 0)
                 {
                     shapeIdentity = false;
-                    colorTiles[i,j] = Assets.Montessori.ColorCode.Color.RED;
+                    colorTiles[i, j] = Assets.Montessori.ColorCode.Color.RED;
                 }
 
-                if (mergedMaps[i,j] == 0)
+                if (mergedMaps[i, j] == 0)
                 {
-                    colorTiles[i,j] = Assets.Montessori.ColorCode.Color.UNDEFINED;
+                    colorTiles[i, j] = Assets.Montessori.ColorCode.Color.UNDEFINED;
                 }
             }
         }
@@ -96,18 +96,20 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
 
     private void PrefillColorTiles(int[,] mergedMaps)
     {
+        colorTiles = new Assets.Montessori.ColorCode.Color[mergedMaps.GetLength(0), mergedMaps.GetLength(1)];
+
         for (int i = 0; i < mergedMaps.GetLength(0); i++)
         {
             for (int j = 0; j < mergedMaps.GetLength(1); j++)
             {
-                if (i == 0 || i == (mergedMaps.GetLength(0)-1))
+                if (i == 0 || i == (mergedMaps.GetLength(0) - 1))
                 {
-                    colorTiles[i,j] = Assets.Montessori.ColorCode.Color.UNDEFINED;
+                    colorTiles[i, j] = Assets.Montessori.ColorCode.Color.UNDEFINED;
                 }
 
                 else
                 {
-                    colorTiles[i,j] = Assets.Montessori.ColorCode.Color.GREEN;
+                    colorTiles[i, j] = Assets.Montessori.ColorCode.Color.GREEN;
                 }
             }
         }
@@ -125,7 +127,7 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
 
     public void Notify(bool result = false)
     {
-        int[,] template = bitmapConverter.GetBitmapConverted();        
+        int[,] template = bitmapConverter.GetBitmapConverted();
         int[,] terrain = sandboxToBitMapConverter.GetBitMapDetcted();
         shapeIdentity = compare(terrain, template);
         NotifySubscibers();

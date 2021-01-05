@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3589499644020049662}
   - component: {fileID: 5444847864717986823}
+  - component: {fileID: 9150929360590572813}
+  - component: {fileID: 1988508337821592777}
+  - component: {fileID: 932471900525702617}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -46,14 +49,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   areaCalculatorGO: {fileID: 8419290984417818485}
-  comparer: {fileID: 9033898260712478978, guid: 5bd3a26e2ba78894da6b667d1a2a94d2,
+--- !u!114 &9150929360590572813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530559916960571964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f44fef5fead07a144a91463f187d1702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tolerance: 2
+--- !u!114 &1988508337821592777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530559916960571964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13295b848e26b1142957cb475e1a60d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &932471900525702617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530559916960571964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50dc40403493add4aa634b536cd3c140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wireTilePrefab: {fileID: 2135022162027007530, guid: 9db1892caba784f408b9af57adde6ef0,
     type: 3}
-  bitmapConverter: {fileID: 8598991431001098223, guid: 99161805f43d9aa449d160eb0f9471f9,
-    type: 3}
-  colorCodeProjector: {fileID: 6989638194709991564, guid: b40e09d9e92a3eb48aa473740550c6de,
-    type: 3}
-  sandboxToBitMapConverter: {fileID: 3279481197603896588, guid: f9ff5d34b223b714d8662a0ba7880eab,
-    type: 3}
+  wireTileHeight: 512
 --- !u!1001 &630105439955886454
 PrefabInstance:
   m_ObjectHideFlags: 0
