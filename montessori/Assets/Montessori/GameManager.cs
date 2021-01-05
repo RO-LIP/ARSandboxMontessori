@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     private AreaCalculator areaCalculator;
     [SerializeField]
     private Comparer comparer;
-    [SerializeField]
-    private BitmapConverter bitmapConverter;
+    //[SerializeField]
+    //private BitmapConverter bitmapConverter;
     [SerializeField]
     private ColorCodeProjector colorCodeProjector;
     [SerializeField]
@@ -19,7 +19,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        areaCalculator = areaCalculatorGO.GetComponent<AreaCalculator>();
         //resolve (cross-)dependencies of Montessori-Objects
+        BitmapConverter bitmapConverter = transform.GetComponentInChildren<BitmapConverter>();
         comparer.bitmapConverter = bitmapConverter;
         comparer.sandboxToBitMapConverter = sandboxToBitMapConverter;
         comparer.areaCalculator = areaCalculator;
@@ -27,11 +29,5 @@ public class GameManager : MonoBehaviour
         colorCodeProjector.publisher = comparer;
         colorCodeProjector.source = comparer;
         sandboxToBitMapConverter.areaCalculator = areaCalculator;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        areaCalculator = areaCalculatorGO.GetComponent<AreaCalculator>();
     }
 }
