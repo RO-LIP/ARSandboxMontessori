@@ -8,10 +8,9 @@ using Assets.Montessori.BitmapConversion;
 
 public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
 {
-    private BitmapConverter bitmapConverter;
-
-    private SandboxToBitMapConverter sandboxToBitMapConverter;
-    private AreaCalculator areaCalculator;
+    public BitmapConverter bitmapConverter { get; set; }
+    public SandboxToBitMapConverter sandboxToBitMapConverter { get; set; }
+    public IAreaCalculator areaCalculator { get; set; }
     private Assets.Montessori.ColorCode.Color[,] colorTiles;
 
     private bool shapeIdentity;

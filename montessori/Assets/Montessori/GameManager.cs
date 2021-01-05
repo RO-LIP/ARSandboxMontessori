@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         areaCalculator = areaCalculatorGO.GetComponent<IAreaCalculator>();
+        comparer.bitmapConverter = bitmapConverter;
+        comparer.sandboxToBitMapConverter = sandboxToBitMapConverter;
+        comparer.areaCalculator = (AreaCalculator)areaCalculator;
     }
 
     // Update is called once per frame
