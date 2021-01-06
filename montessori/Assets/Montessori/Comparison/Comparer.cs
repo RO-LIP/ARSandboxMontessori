@@ -26,17 +26,30 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
     {
         AddTolerance(template);
         int[,] mergedBitMaps = template;
+        int cnt0 = 0;
+        int cnt1 = 0;
+        int cnt2 = 0;
+        int cnt5 = 0;
 
         for (int i = 0; i < terrain.GetLength(0); i++)
         {
             for (int j = 0; j < terrain.GetLength(1); j++)
             {
+                //DEBUG BEGIN
+                if (terrain[i, j] == 0) cnt0++;
+                if (terrain[i, j] == 1) cnt1++;
+                if (terrain[i, j] == 2) cnt2++;
+                if (terrain[i, j] == 5) cnt5++;
+                //DEBUG END
+
                 if (terrain[i, j] == 5)
                 {
                     mergedBitMaps[i, j] = 5;
                 }
             }
         }
+
+        Debug.Log("Value-Count TERRAIN: 0=" + cnt0 + " 1=" + cnt1 + " 2=" + cnt2 + " 5=" + cnt5);
 
         return mergedBitMaps;
     }
@@ -88,9 +101,9 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
                     colorTiles[i, j] = Assets.Montessori.ColorCode.Color.RED;
 
                     int extend = 1;
-                    while((mergedMaps[i - extend, j] != 0) && (mergedMaps[i + extend, j] != 0))
+                    while ((mergedMaps[i - extend, j] != 0) && (mergedMaps[i + extend, j] != 0))
                     {
-                        if((mergedMaps[i - extend, j] == 5) || (mergedMaps[i + extend, j] == 5))
+                        if ((mergedMaps[i - extend, j] == 5) || (mergedMaps[i + extend, j] == 5))
                         {
                             colorTiles[i, j] = Assets.Montessori.ColorCode.Color.GREEN;
                             break;
@@ -100,7 +113,11 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
                     }
                 }
 
-                else if (mergedMaps[i, j] == 5 && mergedMaps[i - 1, j] == 0 && mergedMaps[i + 1, j] == 0)
+                else if (mergedMaps[i, j] == 5
+                    && mergedMaps[i - 1, j] != 1
+                    && mergedMaps[i - 1, j] != 2
+                    && mergedMaps[i + 1, j] != 1
+                    && mergedMaps[i + 1, j] != 2)
                 {
                     shapeIdentity = false;
                     colorTiles[i, j] = Assets.Montessori.ColorCode.Color.RED;

@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wireTilePrefab: {fileID: 1865311755930519781, guid: 7a7b68fac735aff4fa3376b19d30d742,
     type: 3}
-  wireTileHeight: 512
+  wireTileHeight: 102
