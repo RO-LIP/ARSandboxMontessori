@@ -8,7 +8,7 @@ namespace Assets.Montessori.BitmapConversion
     {
         public AreaCalculator areaCalculator { private get; set; }
         private int gridRows = 128;
-        private int gridCols = 64;
+        private int gridCols = 63;
         private int[,] convertedBitmap;
         private Texture2D currentTexture;
 
