@@ -78,16 +78,34 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
             {
                 colorTiles[i, j] = 0;
 
-                if (mergedMaps[i, j] == 5 && mergedMaps[i - 1, j] == 0 && mergedMaps[i + 1, j] == 0)
+                if (mergedMaps[i, j] == 0)
+                {
+                    colorTiles[i, j] = Assets.Montessori.ColorCode.Color.UNDEFINED;
+                }
+
+                else if (mergedMaps[i, j] == 1)
+                {
+                    colorTiles[i, j] = Assets.Montessori.ColorCode.Color.RED;
+
+                    int extend = 1;
+                    while((mergedMaps[i - extend, j] != 0) && (mergedMaps[i + extend, j] != 0))
+                    {
+                        if((mergedMaps[i - extend, j] == 5) || (mergedMaps[i + extend, j] == 5))
+                        {
+                            colorTiles[i, j] = Assets.Montessori.ColorCode.Color.GREEN;
+                            break;
+                        }
+
+                        extend++;
+                    }
+                }
+
+                else if (mergedMaps[i, j] == 5 && mergedMaps[i - 1, j] == 0 && mergedMaps[i + 1, j] == 0)
                 {
                     shapeIdentity = false;
                     colorTiles[i, j] = Assets.Montessori.ColorCode.Color.RED;
                 }
 
-                if (mergedMaps[i, j] == 0)
-                {
-                    colorTiles[i, j] = Assets.Montessori.ColorCode.Color.UNDEFINED;
-                }
             }
         }
 
