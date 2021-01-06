@@ -7,8 +7,8 @@ namespace Assets.Montessori.BitmapConversion
     public class BitmapConverter : MonoBehaviour, ISubscriber
     {
         public AreaCalculator areaCalculator { private get; set; }
-        private int gridRows;
-        private int gridCols;
+        private int gridRows = 128;
+        private int gridCols = 64;
         private int[,] convertedBitmap;
         private Texture2D currentTexture;
 
