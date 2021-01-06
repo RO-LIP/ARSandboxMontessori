@@ -170,11 +170,7 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
                     }
                 }
 
-                else if (terrain[i, j] == 5
-                    && template[i - 1, j] != 1
-                    && template[i - 1, j] != 2
-                    && template[i + 1, j] != 1
-                    && template[i + 1, j] != 2)
+                else if (terrain[i, j] == 5 && template[i - 1, j] == 0)
                 {
                     shapeIdentity = false;
                     colorTiles[i, j] = Assets.Montessori.ColorCode.Color.RED;
