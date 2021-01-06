@@ -129,6 +129,63 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
         return shapeIdentity;
     }
 
+    private bool CompareShapes(int[,] terrain, int[,] template)
+    {
+        bool shapeIdentity = true;
+        PrefillColorTiles(terrain);
+
+        //start only at 2nd column and go to 2nd to last coulmn to prevent arry out of bound exceptions; Problematic?
+        for (int i = 1; i < (terrain.GetLength(0) - 1); i++)
+        {
+            for (int j = 0; j < terrain.GetLength(1); j++)
+            {
+                //colorTiles[i, j] = 0;
+
+                if (terrain[i, j] == 0 && template[i, j] == 0)
+                {
+                    colorTiles[i, j] = Assets.Montessori.ColorCode.Color.UNDEFINED;
+                }
+
+                else if (terrain[i, j] == 5 && (template[i, j] == 1 || template[i, j] == 2))
+                {
+                    colorTiles[i, j] = Assets.Montessori.ColorCode.Color.GREEN;
+                }
+
+                else if (template[i, j] == 1)
+                {
+                    colorTiles[i, j] = Assets.Montessori.ColorCode.Color.RED;
+                    shapeIdentity = false;
+
+                    int extend = 1;
+                    while ((template[i - extend, j] != 0) && (template[i + extend, j] != 0))
+                    {
+                        if ((terrain[i - extend, j] == 5) || (terrain[i + extend, j] == 5))
+                        {
+                            colorTiles[i, j] = Assets.Montessori.ColorCode.Color.UNDEFINED;
+                            shapeIdentity = true;
+                            break;
+                        }
+
+                        extend++;
+                    }
+                }
+
+                else if (terrain[i, j] == 5
+                    && template[i - 1, j] != 1
+                    && template[i - 1, j] != 2
+                    && template[i + 1, j] != 1
+                    && template[i + 1, j] != 2)
+                {
+                    shapeIdentity = false;
+                    colorTiles[i, j] = Assets.Montessori.ColorCode.Color.RED;
+                }
+
+            }
+        }
+
+        return shapeIdentity;
+    }
+
     private void PrefillColorTiles(int[,] mergedMaps)
     {
         colorTiles = new Assets.Montessori.ColorCode.Color[mergedMaps.GetLength(0), mergedMaps.GetLength(1)];
@@ -137,7 +194,7 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
         {
             for (int j = 0; j < mergedMaps.GetLength(1); j++)
             {
-                if (i == 0 || i == (mergedMaps.GetLength(0) - 1))
+                /*if (i == 0 || i == (mergedMaps.GetLength(0) - 1))
                 {
                     colorTiles[i, j] = Assets.Montessori.ColorCode.Color.UNDEFINED;
                 }
@@ -145,14 +202,16 @@ public class Comparer : MonoBehaviour, ISubscriber, IPublisher, IColorCodeSource
                 else
                 {
                     colorTiles[i, j] = Assets.Montessori.ColorCode.Color.GREEN;
-                }
+                }*/
+                colorTiles[i, j] = Assets.Montessori.ColorCode.Color.UNDEFINED;
             }
         }
     }
 
     private bool compare(int[,] input, int[,] template)
     {
-        return CompareShapes(MergeBitMaps(input, template));
+        //return CompareShapes(MergeBitMaps(input, template));
+        return CompareShapes(input, template);
     }
 
     public Assets.Montessori.ColorCode.Color[,] GetColorArray()
