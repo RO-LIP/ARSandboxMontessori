@@ -44,6 +44,11 @@ namespace Assets.HueterDesWaldes.AreaCalculation
         [SerializeField]
         private bool debugMode = false;
 
+        private void Awake()
+        {           
+            grid = new Grid(gridResolutionX, heightLevels, sandboxCamera);
+        }
+
         private void Start()
         {
             state = State.UNSTABLE;

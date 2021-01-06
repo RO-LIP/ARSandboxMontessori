@@ -1,12 +1,14 @@
 ﻿using System.IO;
 using UnityEngine;
+using Assets.HueterDesWaldes.AreaCalculation;
 
 namespace Assets.Montessori.BitmapConversion
 {
     public class BitmapConverter : MonoBehaviour, ISubscriber
     {
-        private int gridRows = 128;
-        private int gridCols = 64;
+        public AreaCalculator areaCalculator { private get; set; }
+        private int gridRows;
+        private int gridCols;
         private int[,] convertedBitmap;
         private Texture2D currentTexture;
 
@@ -83,6 +85,11 @@ namespace Assets.Montessori.BitmapConversion
 
         private int[,] ResizeBitmap(int[,] bitmap)
         {
+            Assets.HueterDesWaldes.AreaCalculation.Grid grid = areaCalculator.GetGrid();
+
+            gridCols = grid.ResolutionZ;
+            gridRows = grid.ResolutionX;
+
             int[,] resizedBitmap = new int[gridRows, gridCols];
             int[,] tile = new int[bitmap.GetLength(0) / gridRows, bitmap.GetLength(1) / gridCols];
 

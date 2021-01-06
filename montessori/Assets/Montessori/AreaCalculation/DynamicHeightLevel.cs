@@ -10,7 +10,7 @@ namespace Assets.HueterDesWaldes.AreaCalculation
             //sort y-values in grid
             SortedSet<float> yValues = new SortedSet<float>();
             foreach (Tile tile in grid.Tiles)
-                yValues.Add(tile.WorldPos.y);
+                yValues.Add(tile.WorldPos.y);          
             //save max-value for HI heightLevel.upperBorder
             float max = yValues.Max;
             //remove upper 10% values to eradicate spikes

@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
         BitmapConverter bitmapConverter = transform.GetComponentInChildren<BitmapConverter>();
         areaCalculator = areaCalculatorGO.GetComponent<AreaCalculator>();
         //resolve (cross-)dependencies of Montessori-Objects
+        bitmapConverter.areaCalculator = areaCalculator;        
         comparer.bitmapConverter = bitmapConverter;
         comparer.sandboxToBitMapConverter = sandboxToBitMapConverter;
         comparer.areaCalculator = areaCalculator;
